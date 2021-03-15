@@ -16,7 +16,15 @@ def hello_world():
         db.session.commit()
         
     allFiles = Photon.query.all() 
-    return render_template('index.html', allFiles=allFiles)
+    return render_template('index.html', allFiles=allFiles) 
+
+
+@app.route('/delete')
+def delete(num):
+    photon = Photon.query.filter_by(num=num).first()
+    db.session.delete(photon)
+    db.session.commit()
+    return redirect("/")
 
 
 @app.route('/show')
