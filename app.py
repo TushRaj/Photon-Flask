@@ -15,8 +15,15 @@ def hello_world():
         db.session.add(photon)
         db.session.commit()
         
-    all = Photon.query.all() 
-    return render_template('index.html', all=all)
+    allFiles = Photon.query.all() 
+    return render_template('index.html', allFiles=allFiles)
+
+
+@app.route('/show')
+def files():
+    allFiles = Photon.query.all()
+    print(allFiles)
+    
 
 
 if __name__ == "__main__":
