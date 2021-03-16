@@ -6,6 +6,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///photon.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+class Photon(db.Model):
+    num = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    desc = db.Column(db.String(500), nullable=False)
+    
+
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
     if request.method=='POST':
