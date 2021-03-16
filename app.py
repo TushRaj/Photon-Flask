@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,request,Response
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -31,6 +31,12 @@ def delete(num):
 def files():
     allFiles = Photon.query.all()
     print(allFiles)
+
+
+@app.route('/webhook', methods=['POST'])
+def respond():
+    print(request.json);
+    return Response(status=200)
     
 
 
